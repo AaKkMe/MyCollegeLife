@@ -1,0 +1,15 @@
+# Python virtual environment
+.venv
+venv/
+
+# IDE and cache files
+.idea/
+__pycache__/
+*.pyc
+
+# Flask instance folder (our private locker)
+/instance/
+
+# Database files (each team member will have their own)
+*.db
+*.sqlite3
