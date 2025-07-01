@@ -5,6 +5,9 @@ venv/
 # IDE and cache files
 .idea/
 __pycache__/
+
+
+
 *.pyc
 
 # Flask instance folder (our private locker)
