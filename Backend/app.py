@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='../Frontend')
 
 # This line alllows the frontend on a different address to make request to our backend
 CORS(app)

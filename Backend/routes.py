@@ -1,6 +1,11 @@
 from app import app, db
 from models import Class, Assignment, Event, StudyLog
-from flask import request, jsonify
+from flask import request, jsonify, send_from_directory
+
+@app.route('/')
+def home():
+    return send_from_directory('../Frontend', 'index.html')
+
 
 #For classes
 @app.route('/api/classes', methods=['GET'])
