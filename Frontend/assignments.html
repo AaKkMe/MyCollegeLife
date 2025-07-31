@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeLife - Assignments</title>
+    <link rel="stylesheet" href="static/css/assignments.css">
 </head>
 <body>
+    <header>
+        <h1>MyCollegeLife</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                
+                <li><a href="studylog.html">Study Log</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <section id="assignment-management">
+            <h2>Assignments</h2>
+            <div id="assignment-list"></div>
+
+            <h3>Add a New Assignment</h3>
+            <form id="add-assignment-form">
+                <input type="text" id="assignment-title" placeholder="Title" required>
+                <input type="text" id="assignment-subject" placeholder="Subject" required>
+                <input type="text" id="assignment-due-date" placeholder="Due Date (e.g., 2025-12-31)" required>
+                <button type="submit">Add Assignment</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
+    </footer>
 </body>
 </html>

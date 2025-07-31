@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --background-color: #f4f6f9;
+    --text-primary: #1f1f1f;
+    --text-secondary: #5c5c5c;
+    --accent-purple: #6a357e;
+    --hover-purple: #522962;
+    --border-color: #ddd;
+    --card-bg: #ffffff;
+    --font-primary: 'Poppins', sans-serif;
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: var(--accent-purple);
+}
+
+/* Main */
+main {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.dashboard-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    border-left: 6px solid var(--accent-purple);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid var(--border-color);
+    margin-top: 5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    nav li {
+        width: 100%;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.75rem 0;
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    nav li:last-child a {
+        border-bottom: none;
+    }
+}
