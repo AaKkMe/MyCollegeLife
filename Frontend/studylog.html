@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeLife - Study Log</title>
+    <link rel="stylesheet" href="static/css/study-log.css">
 </head>
 <body>
+    <header>
+        <h1>MyCollegeLife</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                
+                <li><a href="studylog.html">Study Log</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="studylog-management">
+            <h2>Study Log</h2>
+            <div id="studylog-list"></div>
+
+            <button id="generate-chart-btn">Generate Study Log Chart</button>
+            <div id="chart-display-area"></div>
+
+            <h3>Add a New Study Log</h3>
+            <form id="add-studylog-form">
+                <input type="text" id="studylog-date" placeholder="Date (e.g., 2025-12-31)" required>
+                <input type="text" id="studylog-subject" placeholder="Subject" required>
+                <input type="number" id="studylog-duration" placeholder="Duration (minutes)" required>
+                <button type="submit">Add Log</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>

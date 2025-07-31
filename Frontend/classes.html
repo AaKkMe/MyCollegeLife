@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeLife - Classes</title>
+    <link rel="stylesheet" href="static/css/classes.css">
 </head>
 <body>
+    <header>
+        <h1>MyCollegeLife</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                
+                <li><a href="studylog.html">Study Log</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="class-management">
+            <h2>Class Schedule</h2>
+            <div id="class-list"></div>
+
+            <h3>Add a New Class</h3>
+            <form id="add-class-form">
+                <input type="text" id="class-name" placeholder="Class Name" required>
+                <input type="text" id="class-time" placeholder="Time (e.g., 10:00 AM)" required>
+                <input type="text" id="class-day" placeholder="Day (e.g., Monday)" required>
+                <button type="submit">Add Class</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
