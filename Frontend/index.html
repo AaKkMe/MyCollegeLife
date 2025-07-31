@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCollegeLife - Dashboard</title>
+    <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
+    <header>
+        <h1>MyCollegeLife</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="classes.html">Classes</a></li>
+                <li><a href="assignments.html">Assignments</a></li>
+                <li><a href="studylog.html">Study Log</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <main>
+        <section id="dashboard-summary">
+            <h2>Dashboard Summary</h2>
+            <div class="summary-container">
+                <div class="summary-card">
+                    <h3>Today's Schedule</h3>
+                    <div id="class-schedule"></div>
+                </div>
+                <div class="summary-card">
+                    <h3>Upcoming Assignments</h3>
+                    <div id="assignment-list"></div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/script.js"></script>
 </body>
 </html>
