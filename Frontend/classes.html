@@ -38,6 +38,48 @@
     <footer>
         <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
     </footer>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const classList = document.getElementById('class-list');
+            const addClassForm = document.getElementById('add-class-form');
 
+            // Function to fetch and display classes
+            const fetchClasses = () => {
+                fetch('/api/classes')
+                    .then(response => response.json())
+                    .then(data => {
+                        classList.innerHTML = '';
+                        data.forEach(c => {
+                            classList.innerHTML += `<div class="class-item"><strong>${c.name}</strong> - ${c.day} at ${c.time}</div>`;
+                        });
+                    });
+            };
+
+            // Fetch classes on page load
+            fetchClasses();
+
+            // Handle form submission
+            addClassForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const className = document.getElementById('class-name').value;
+                const classTime = document.getElementById('class-time').value;
+                const classDay = document.getElementById('class-day').value;
+
+                fetch('/api/add-class', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: className, time: classTime, day: classDay })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    fetchClasses(); // Refresh the list
+                    addClassForm.reset();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
