@@ -6,6 +6,10 @@ from flask import request, jsonify, send_from_directory
 def home():
     return send_from_directory('../Frontend', 'index.html')
 
+@app.route('/<path:filename>')
+def serve_page(filename):
+    return send_from_directory('../Frontend', filename)
+
 
 #For classes
 @app.route('/api/classes', methods=['GET'])

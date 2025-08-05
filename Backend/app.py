@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-app = Flask(__name__,template_folder='../Frontend')
+app = Flask(__name__,template_folder='../Frontend', static_folder= '../Frontend/static')
 
 # This line alllows the frontend on a different address to make request to our backend
 CORS(app)
@@ -13,7 +13,7 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #optionsel feature truning off to save memory
 
-#step 3:
+#step 3:  
 db = SQLAlchemy(app) #object of database
 from routes import *
 
