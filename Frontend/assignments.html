@@ -38,5 +38,48 @@
     <footer>
         <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const assignmentList = document.getElementById('assignment-list');
+            const addAssignmentForm = document.getElementById('add-assignment-form');
+
+            // Function to fetch and display assignments
+            const fetchAssignments = () => {
+                fetch('/api/assignments')
+                    .then(response => response.json())
+                    .then(data => {
+                        assignmentList.innerHTML = '';
+                        data.forEach(a => {
+                            assignmentList.innerHTML += <div class="assignment-item"><strong>${a.title}</strong> - ${a.subject} (Due: ${a.due_date})</div>;
+                        });
+                    });
+            };
+
+            // Fetch assignments on page load
+            fetchAssignments();
+
+            // Handle form submission
+            addAssignmentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const assignmentTitle = document.getElementById('assignment-title').value;
+                const assignmentSubject = document.getElementById('assignment-subject').value;
+                const assignmentDueDate = document.getElementById('assignment-due-date').value;
+
+                fetch('/api/add-assignment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title: assignmentTitle, subject: assignmentSubject, due_date: assignmentDueDate })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    fetchAssignments(); // Refresh the list
+                    addAssignmentForm.reset();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
