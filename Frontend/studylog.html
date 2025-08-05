@@ -41,6 +41,72 @@
     <footer>
         <p>&copy; 2025 MyCollegeLife. All rights reserved.</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const studylogList = document.getElementById('studylog-list');
+            const addStudylogForm = document.getElementById('add-studylog-form');
+
+            // Function to fetch and display study logs
+            const fetchStudyLogs = () => {
+                fetch('/api/studylogs')
+                    .then(response => response.json())
+                    .then(data => {
+                        studylogList.innerHTML = '';
+                        data.forEach(l => {
+                            studylogList.innerHTML += `<div class="studylog-item"><strong>${l.subject}</strong> - ${l.duration} minutes on ${l.date}</div>`;
+                        });
+                    });
+            };
+
+            // Fetch study logs on page load
+            fetchStudyLogs();
+
+            // Handle form submission
+            addStudylogForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const studylogDate = document.getElementById('studylog-date').value;
+                const studylogSubject = document.getElementById('studylog-subject').value;
+                const studylogDuration = document.getElementById('studylog-duration').value;
+
+                fetch('/api/add-studylog', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ date: studylogDate, subject: studylogSubject, duration: studylogDuration })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    fetchStudyLogs(); // Refresh the list
+                    addStudylogForm.reset();
+                });
+            });
+
+            // Handle chart generation
+            const generateChartBtn = document.getElementById('generate-chart-btn');
+            const chartDisplayArea = document.getElementById('chart-display-area');
+
+            generateChartBtn.addEventListener('click', function() {
+                chartDisplayArea.innerHTML = 'Generating chart...';
+                fetch('/api/generate-study-chart')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.chart_url) {
+                            chartDisplayArea.innerHTML = `<img src="${data.chart_url}" alt="Study Log Chart">`;
+                        } else if (data.message) {
+                            chartDisplayArea.innerHTML = data.message;
+                        } else {
+                            chartDisplayArea.innerHTML = 'Failed to generate chart.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error generating chart:', error);
+                        chartDisplayArea.innerHTML = 'Error generating chart.';
+                    });
+            });
+        });
+    </script>
 
 </body>
 </html>
