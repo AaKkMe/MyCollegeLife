@@ -1,6 +1,7 @@
 from app import app, db
 from models import Class, Assignment, Event, StudyLog
 from flask import request, jsonify, send_from_directory
+from Data_viz.generate_chart import get_chart_as_base64
 
 @app.route('/')
 def home():
@@ -100,4 +101,20 @@ def add_study_log():
     db.session.add(new_study_log)
     db.session.commit()
     return jsonify({'message':'Study log added successfully'})
+
+@app.route('/api/generate-study-chart', methods=['GET'])
+def generate_study_chart():
+    study_logs = StudyLog.query.all()
+    if not study_logs:
+        return jsonify({'message': 'No study logs available to generate a chart.'})
+
+    log_data = [{'date': log.date, 'duration': log.duration} for log in study_logs]
+    
+    chart_base64 = get_chart_as_base64(log_data)
+    
+    if chart_base64:
+        chart_url = f"data:image/png;base64,{chart_base64}"
+        return jsonify({'chart_url': chart_url})
+    else:
+        return jsonify({'message': 'Could not generate chart from the available data.'})
 

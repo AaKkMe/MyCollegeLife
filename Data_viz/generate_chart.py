@@ -1,8 +1,10 @@
 from datetime import timedelta
 import pandas as pd
-import seaborn as sb
-import numpy as np
-import matplotlib as mt
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import io
+import base64
 
 def load_data_to_dataframe(study_logs):
     """Converts a list of study logs to a pandas DataFrame."""
@@ -59,3 +61,25 @@ def plot_chart(daily_summary):
 
     plt.tight_layout()
     return fig
+
+
+def get_chart_as_base64(study_logs):
+    """Main function to generate a base64-encoded chart from study logs."""
+    df = load_data_to_dataframe(study_logs)
+    daily_summary = filter_and_aggregate_data(df)
+
+    if daily_summary is None or daily_summary.empty:
+        return None
+
+    fig = plot_chart(daily_summary)
+    
+    # Save the plot to a BytesIO object
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    
+    # Encode the image to base64
+    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+    
+    return image_base64
