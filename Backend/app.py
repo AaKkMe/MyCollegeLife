@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__,template_folder='../Frontend', static_folder= '../Frontend/static')
 
-# This line alllows the frontend on a different address to make request to our backend
+# This line allows the frontend on a different address to make request to our backend
 CORS(app)
 
 #Configuring database

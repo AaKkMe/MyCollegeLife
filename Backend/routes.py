@@ -108,7 +108,7 @@ def generate_study_chart():
     if not study_logs:
         return jsonify({'message': 'No study logs available to generate a chart.'})
 
-    log_data = [{'date': log.date, 'duration': log.duration} for log in study_logs]
+    log_data = [{'date': log.date, 'subject': log.subject, 'duration': log.duration} for log in study_logs]
     
     chart_base64 = get_chart_as_base64(log_data)
     

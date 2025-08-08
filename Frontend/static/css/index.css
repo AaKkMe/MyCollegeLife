@@ -124,3 +124,85 @@ footer {
         border-bottom: none;
     }
 }
+
+/* Stylish Checklist Styles */
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.checklist li:last-child {
+    border-bottom: none;
+}
+
+.checklist li:hover {
+    background-color: #f0eaf3; /* A light purple tint on hover */
+}
+
+.checklist label {
+    flex-grow: 1;
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px; /* Space for the custom checkbox */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Hide the default checkbox */
+.checklist input[type="checkbox"] {
+    display: none;
+}
+
+/* Custom Checkbox - The box */
+.checklist label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-purple);
+    border-radius: 4px;
+    background-color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Custom Checkbox - The checkmark */
+.checklist label::after {
+    content: '\2713'; /* Unicode checkmark character */
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    font-size: 16px;
+    color: #fff;
+    transition: transform 0.2s ease;
+}
+
+/* When the hidden checkbox is checked */
+.checklist input[type="checkbox"]:checked + label::before {
+    background-color: var(--accent-purple);
+    border-color: var(--accent-purple);
+}
+
+.checklist input[type="checkbox"]:checked + label::after {
+    transform: translateY(-50%) scale(1);
+}
+
+/* Style for completed items */
+.checklist li.completed label {
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--hover-purple);
+}
