@@ -70,7 +70,7 @@ main {
     padding: 0 2rem;
 }
 
-#class-management h2 {
+#assignment-management h2 {
     font-size: 2.5rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -78,7 +78,7 @@ main {
     text-align: center;
 }
 
-#class-management h3 {
+#assignment-management h3 {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -87,14 +87,14 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
-#class-list {
+#assignment-list {
     margin-top: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
-.class-item {
+.assignment-item {
     background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 15px;
@@ -102,19 +102,19 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.class-item:hover {
+.assignment-item:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-medium);
 }
 
-.class-item strong {
+.assignment-item strong {
     font-weight: 600;
     font-size: 1.1rem;
     color: var(--text-primary);
 }
 
 /* Form */
-#add-class-form {
+#add-assignment-form {
     margin-top: 2rem;
     background: var(--card-bg);
     padding: 2rem;
@@ -125,7 +125,7 @@ main {
     gap: 1rem;
 }
 
-#add-class-form input[type="text"] {
+#add-assignment-form input[type="text"] {
     flex: 1;
     min-width: 180px;
     padding: 0.8rem 1rem;
@@ -135,13 +135,13 @@ main {
     background-color: #f5f5f7;
 }
 
-#add-class-form input[type="text"]:focus {
+#add-assignment-form input[type="text"]:focus {
     border-color: var(--accent-primary);
     outline: none;
     box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
 }
 
-#add-class-form button {
+#add-assignment-form button {
     background-color: var(--accent-primary);
     color: white;
     padding: 0.8rem 2rem;
@@ -153,7 +153,7 @@ main {
     transition: background-color 0.3s ease;
 }
 
-#add-class-form button:hover {
+#add-assignment-form button:hover {
     background-color: #0062cc;
 }
 
@@ -180,7 +180,7 @@ footer {
         display: none;
     }
 
-    #add-class-form {
+    #add-assignment-form {
         flex-direction: column;
     }
 }

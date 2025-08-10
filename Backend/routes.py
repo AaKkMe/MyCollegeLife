@@ -1,6 +1,6 @@
+from flask import render_template, request, jsonify, send_from_directory
 from app import app, db
-from models import Class, Assignment, Event, StudyLog
-from flask import request, jsonify, send_from_directory
+from models import Class, Assignment, StudyLog
 from Data_viz.generate_chart import get_chart_as_base64
 
 @app.route('/')
