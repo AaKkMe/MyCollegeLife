@@ -152,7 +152,9 @@ footer {
     box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
 }
 
-#add-class-form button {
+/* --- Universal Button Styles for Theme Consistency --- */
+button,
+input[type="submit"] {
     background-color: #007aff;
     color: #fff;
     border: none;
@@ -161,9 +163,20 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.08);
 }
 
-#add-class-form button:hover {
+button:hover,
+input[type="submit"]:hover {
     background-color: #005ecb;
+    box-shadow: 0 4px 16px rgba(0, 122, 255, 0.15);
+}
+
+button:disabled,
+input[type="submit"]:disabled {
+    background-color: #b0b0b0;
+    color: #eee;
+    cursor: not-allowed;
+    box-shadow: none;
 }

@@ -16,7 +16,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     const list = document.createElement('ul');
                     todaysClasses.forEach(c => {
                         const item = document.createElement('li');
-                        item.innerHTML = `<strong>${c.name}</strong> at ${c.time}`;
+                        // Use class id for unique key
+                        const storageKey = `class_checked_${c.id}_${today}`;
+                        const checked = localStorage.getItem(storageKey) === 'true';
+                        item.innerHTML = `
+                            <label>
+                                <input type="checkbox" ${checked ? 'checked' : ''} data-class-id="${c.id}" data-class-day="${today}">
+                                <strong>${c.name}</strong> at ${c.time}
+                            </label>
+                        `;
+                        // Add event listener for checkbox
+                        item.querySelector('input[type="checkbox"]').addEventListener('change', function(e) {
+                            localStorage.setItem(storageKey, e.target.checked ? 'true' : 'false');
+                        });
                         list.appendChild(item);
                     });
                     classSchedule.appendChild(list);

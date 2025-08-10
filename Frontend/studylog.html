@@ -28,7 +28,6 @@
             <div id="studylog-list"></div>
 
             <div class="chart-container">
-                <button id="generate-chart-btn">Generate Study Log Chart</button>
                 <div id="chart-display-area"></div>
             </div>
 
@@ -49,6 +48,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const studylogList = document.getElementById('studylog-list');
             const addStudylogForm = document.getElementById('add-studylog-form');
+            const chartDisplayArea = document.getElementById('chart-display-area');
 
             // Function to fetch and display study logs
             const fetchStudyLogs = () => {
@@ -62,8 +62,29 @@
                     });
             };
 
-            // Fetch study logs on page load
+            // Function to fetch and display study chart
+            const fetchStudyChart = () => {
+                chartDisplayArea.innerHTML = 'Loading chart...';
+                fetch('/api/generate-study-chart')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.chart_url) {
+                            chartDisplayArea.innerHTML = `<img src="${data.chart_url}" alt="Study Log Chart">`;
+                        } else if (data.message) {
+                            chartDisplayArea.innerHTML = data.message;
+                        } else {
+                            chartDisplayArea.innerHTML = 'Failed to load chart.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading chart:', error);
+                        chartDisplayArea.innerHTML = 'Error loading chart.';
+                    });
+            };
+
+            // Fetch study logs and chart on page load
             fetchStudyLogs();
+            fetchStudyChart();
 
             // Handle form submission
             addStudylogForm.addEventListener('submit', function(event) {
@@ -83,31 +104,9 @@
                 .then(data => {
                     console.log(data.message);
                     fetchStudyLogs(); // Refresh the list
+                    fetchStudyChart(); // Refresh the chart
                     addStudylogForm.reset();
                 });
-            });
-
-            // Handle chart generation
-            const generateChartBtn = document.getElementById('generate-chart-btn');
-            const chartDisplayArea = document.getElementById('chart-display-area');
-
-            generateChartBtn.addEventListener('click', function() {
-                chartDisplayArea.innerHTML = 'Generating chart...';
-                fetch('/api/generate-study-chart')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.chart_url) {
-                            chartDisplayArea.innerHTML = `<img src="${data.chart_url}" alt="Study Log Chart">`;
-                        } else if (data.message) {
-                            chartDisplayArea.innerHTML = data.message;
-                        } else {
-                            chartDisplayArea.innerHTML = 'Failed to generate chart.';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error generating chart:', error);
-                        chartDisplayArea.innerHTML = 'Error generating chart.';
-                    });
             });
         });
     </script>
