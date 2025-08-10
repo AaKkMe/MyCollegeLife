@@ -1,126 +1,211 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/* static/css/index.css */
 
-:root {
-    --background-color: #f4f6f9;
-    --text-primary: #1f1f1f;
-    --text-secondary: #5c5c5c;
-    --accent-purple: #6a357e;
-    --hover-purple: #522962;
-    --border-color: #ddd;
-    --card-bg: #ffffff;
-    --font-primary: 'Poppins', sans-serif;
-    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
+/* --- Common Styles --- */
 
+/* General Body and Theme */
 body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f6f6f7;
+    color: #333;
     margin: 0;
-    padding: 0;
-    font-family: var(--font-primary);
-    background-color: var(--background-color);
-    color: var(--text-primary);
     line-height: 1.6;
 }
 
 /* Header */
 header {
-    background-color: var(--card-bg);
-    padding: 1rem 2rem;
+    background-color: #ffffff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-light);
 }
 
 header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--accent-purple);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
+/* Navigation */
 nav ul {
+    margin: 0;
+    padding: 0;
     list-style: none;
     display: flex;
-    gap: 2rem;
-    padding: 0;
-    margin: 0;
+    gap: 1.5rem;
 }
 
 nav a {
     text-decoration: none;
-    color: var(--text-secondary);
+    color: #555;
     font-weight: 500;
-    transition: color 0.3s ease;
-    font-size: 0.95rem;
-    text-transform: uppercase;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease-in-out;
 }
 
 nav a:hover {
-    color: var(--accent-purple);
+    color: #000;
 }
 
-/* Main */
+nav a.active {
+    color: #007aff;
+    font-weight: 600;
+}
+
+/* Main Content Area */
 main {
     max-width: 1200px;
     margin: 3rem auto;
-    padding: 0 1.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    padding: 0 2rem;
 }
 
-.dashboard-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow-light);
-    border-left: 6px solid var(--accent-purple);
+section {
+    margin-bottom: 3rem;
 }
 
+/* Headings */
 h2 {
-    font-size: 1.5rem;
+    text-align: center;
     font-weight: 600;
-    color: var(--accent-purple);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #1d1d1f;
+}
+
+h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-top: 0;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 /* Footer */
 footer {
-    background-color: #fff;
-    padding: 2rem 1rem;
     text-align: center;
+    padding: 2rem;
     font-size: 0.9rem;
     color: #888;
-    border-top: 1px solid var(--border-color);
-    margin-top: 5rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
+/* --- Page-Specific Styles for Dashboard --- */
 
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        gap: 0;
-    }
+.summary-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    justify-items: stretch;
+    align-items: stretch;
+}
 
-    nav li {
-        width: 100%;
-    }
+.summary-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1;
+    min-width: 320px;
+    max-width: 500px;
+}
 
-    nav a {
-        display: block;
-        padding: 0.75rem 0;
-        width: 100%;
-        border-bottom: 1px solid var(--border-color);
-    }
+/* New styles for small summary cards */
+.summary-card.small-card {
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 150px;
+    max-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
 
-    nav li:last-child a {
-        border-bottom: none;
-    }
+/* Make the donut chart card larger */
+.summary-card.large-card {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    min-width: 400px;
+    max-width: 600px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Styles for dynamically generated content inside cards */
+#class-schedule div,
+#assignment-list div {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+/* Custom 'checkbox' style for schedule items */
+#class-schedule div::before {
+    content: '☐';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: #aaa;
+}
+
+/* Style for assignment items */
+#assignment-list strong {
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+/* Style for the donut chart image and legend */
+#dashboard-summary-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.donut-legend {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.donut-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.donut-legend-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #eee;
+}
+
+.summary-card.long-card {
+    min-height: 420px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem;
 }

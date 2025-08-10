@@ -1,7 +1,7 @@
 from app import app, db
 from models import Class, Assignment, Event, StudyLog
 from flask import request, jsonify, send_from_directory
-from Data_viz.generate_chart import get_chart_as_base64
+from Data_viz.generate_chart import get_chart_as_base64, get_subject_donut_chart_base64
 
 @app.route('/')
 def home():
@@ -117,4 +117,17 @@ def generate_study_chart():
         return jsonify({'chart_url': chart_url})
     else:
         return jsonify({'message': 'Could not generate chart from the available data.'})
+
+@app.route('/api/subject-donut-chart', methods=['GET'])
+def subject_donut_chart():
+    logs = StudyLog.query.all()
+    if not logs:
+        return jsonify({'message': 'No study logs available.'})
+    log_data = [{'subject': l.subject, 'duration': l.duration} for l in logs]
+    chart_data = get_subject_donut_chart_base64(log_data)
+    if chart_data and chart_data.get('image_base64'):
+        chart_url = f"data:image/png;base64,{chart_data['image_base64']}"
+        return jsonify({'chart_url': chart_url, 'legend': chart_data['legend']})
+    else:
+        return jsonify({'message': 'Could not generate chart.'})
 

@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyCollegeLife - Study Log</title>
     <link rel="stylesheet" href="static/css/study-log.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body>
+<body class="macos-theme">
     <header>
-        <h1>MyCollegeLife</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="classes.html">Classes</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
-                
-                <li><a href="studylog.html">Study Log</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <h1>MyCollegeLife</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="assignments.html">Assignments</a></li>
+                    <li><a href="studylog.html" class="active">Study Log</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -25,8 +27,10 @@
             <h2>Study Log</h2>
             <div id="studylog-list"></div>
 
-            <button id="generate-chart-btn">Generate Study Log Chart</button>
-            <div id="chart-display-area"></div>
+            <div class="chart-container">
+                <button id="generate-chart-btn">Generate Study Log Chart</button>
+                <div id="chart-display-area"></div>
+            </div>
 
             <h3>Add a New Study Log</h3>
             <form id="add-studylog-form">
@@ -53,7 +57,7 @@
                     .then(data => {
                         studylogList.innerHTML = '';
                         data.forEach(l => {
-                            studylogList.innerHTML += `<div class="studylog-item"><strong>${l.subject}</strong> - ${l.duration} minutes on ${l.date}</div>`;
+                            studylogList.innerHTML += `<div class="list-item"><strong>${l.subject}</strong> - ${l.duration} minutes on ${l.date}</div>`;
                         });
                     });
             };

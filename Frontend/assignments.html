@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyCollegeLife - Assignments</title>
     <link rel="stylesheet" href="static/css/assingments.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body>
+<body class="macos-theme">
     <header>
-        <h1>MyCollegeLife</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="classes.html">Classes</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
-                
-                <li><a href="studylog.html">Study Log</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <h1>MyCollegeLife</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="assignments.html" class="active">Assignments</a></li>
+                    <li><a href="studylog.html">Study Log</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -50,7 +52,7 @@
                     .then(data => {
                         assignmentList.innerHTML = '';
                         data.forEach(a => {
-                            assignmentList.innerHTML += `<div class="assignment-item"><strong>${a.title}</strong> - ${a.subject} (Due: ${a.due_date})</div>`;
+                            assignmentList.innerHTML += `<div class="list-item"><strong>${a.title}</strong> - ${a.subject} (Due: ${a.due_date})</div>`;
                         });
                     });
             };

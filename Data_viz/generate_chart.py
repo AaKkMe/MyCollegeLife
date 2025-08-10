@@ -83,3 +83,47 @@ def get_chart_as_base64(study_logs):
     buf.close()
     
     return image_base64
+
+def get_subject_donut_chart_base64(study_logs):
+    """
+    Generates a donut chart showing subjects and total hours studied.
+    Returns dict with base64 PNG and legend mapping.
+    """
+    df = pd.DataFrame(study_logs)
+    if df.empty or 'subject' not in df or 'duration' not in df:
+        return None
+
+    subject_summary = df.groupby('subject')['duration'].sum()
+    if subject_summary.empty:
+        return None
+
+    hours = subject_summary / 60
+    subjects = subject_summary.index.tolist()
+
+    plt.style.use('seaborn-v0_8-whitegrid')
+    fig, ax = plt.subplots(figsize=(7, 7))
+    colors = plt.get_cmap('tab20').colors[:len(subjects)]
+    wedges, texts, autotexts = ax.pie(
+        hours,
+        labels=None,
+        colors=colors,
+        autopct=lambda pct: f"{pct:.1f}%",
+        startangle=90,
+        wedgeprops=dict(width=0.4)
+    )
+    ax.set_title('Study Hours by Subject', fontsize=18, fontweight='bold')
+    plt.tight_layout()
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    image_base64 = base64.b64encode(buf.read()).decode('utf-8')
+    buf.close()
+    plt.close(fig)
+
+    # Legend: subject-color mapping
+    legend = [
+        {'subject': s, 'color': '#%02x%02x%02x' % tuple(int(c*255) for c in colors[i][:3])}
+        for i, s in enumerate(subjects)
+    ]
+    return {'image_base64': image_base64, 'legend': legend}

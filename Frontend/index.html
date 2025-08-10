@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyCollegeLife - Dashboard</title>
     <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body>
+<body class="macos-theme">
     <header>
-        <h1>MyCollegeLife</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="classes.html">Classes</a></li>
-                <li><a href="assignments.html">Assignments</a></li>
-                <li><a href="studylog.html">Study Log</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <h1>MyCollegeLife</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Dashboard</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="assignments.html">Assignments</a></li>
+                    <li><a href="studylog.html">Study Log</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -31,7 +34,14 @@
                     <h3>Upcoming Assignments</h3>
                     <div id="assignment-list"></div>
                 </div>
-                
+                <div class="summary-card large-card" id="donut-summary-card">
+                    <h3>Study Hours by Subject</h3>
+                    <div id="dashboard-summary-card"></div>
+                </div>
+                <div class="summary-card long-card">
+                    <h3>Weekly Study Log</h3>
+                    <div id="weekly-studylog"></div>
+                </div>
             </div>
         </section>
     </main>
